@@ -6,10 +6,10 @@
  
  
  
- Identify bugs causing the code to crash and resolve them. 
- Discuss what the final code should do and how. 
- Determine which lines of code are not needed in final model and remove them. 
- Watch tutorials on how to use Pandas in Python. 
- Discuss what functions can be added to the existing code. 
- Run the final code in Visual Studio Code to ensure its error free. 
- Create video and presentation of final code. 
+ 6. Identify bugs causing the code to crash and resolve them. 
+ 7. Discuss what the final code should do and how. 
+ 8. Determine which lines of code are not needed in final model and remove them. 
+ 9. Watch tutorials on how to use Pandas in Python. 
+ 10. Discuss what functions can be added to the existing code. 
+ 11.Run the final code in Visual Studio Code to ensure its error free. 
+ 12.  Create video and presentation of final code. 
