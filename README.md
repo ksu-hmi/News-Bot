@@ -6,8 +6,6 @@ This is code to a bot that will grab news from user entered keywords and then po
 
 It will currently only work with VIAA's social media accounts.
 
-#Installations
-
-Installations
+# Installations
 
 Must import Flask, render_template, request to run the script2 code
