@@ -1,7 +1,7 @@
  1. - [X] Upload project proposal to D2L and get approval from Dr. Thomas. - Tasha and Tae
- 2. - [X ]Create repository called VIAA-News-Bot in the ksu-hmi Github. -Tasha
- 3. - [X ]Add README page with project description to our repository. - Tasha and Tae
- 4. - [X ]Upload existing code to Visual Studio Code and attempt to run. -Tasha and Tae
+ 2. - [X]Create repository called VIAA-News-Bot in the ksu-hmi Github. -Tasha
+ 3. - [X]Add README page with project description to our repository. - Tasha and Tae
+ 4. - [X]Upload existing code to Visual Studio Code and attempt to run. -Tasha and Tae
  5. - [ ] Code Findings:
  6. - [ ]Identify bugs causing the code to crash and resolve them. 
  7. - [ ]Discuss what the final code should do and how. 
