@@ -8,4 +8,4 @@ It will currently only work with VIAA's social media accounts.
 
 # Installations
 
-Must import Flask, render_template, request to run the script2 code
+Must import Flask, render_template, request to run the Resultsforscript.py code
