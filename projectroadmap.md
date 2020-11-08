@@ -1,4 +1,4 @@
- 1. Upload project proposal to D2L and get approval from Dr. Thomas. - Tasha and Tae
+ 1. - [ ] Upload project proposal to D2L and get approval from Dr. Thomas. - Tasha and Tae
  2. Create repository called VIAA-News-Bot in the ksu-hmi Github. -Tasha
  3. Add README page with project description to our repository. - Tasha and Tae
  4. Upload existing code to Visual Studio Code and attempt to run. -Tasha and Tae
