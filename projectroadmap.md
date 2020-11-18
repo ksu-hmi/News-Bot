@@ -3,10 +3,18 @@
  3. - [X] Add README page with project description commits to our repository. - Tasha and Tae
  4. - [X] Upload existing code related to our project to Visual Studio Code and ran code. -Tasha and Tae
  5. - [X] Made comments in script1 code used for the Webpage made with flask-Tasha
- 6. - [ ] Identify bugs causing the code to crash and resolve them. 
- 7. - [ ] Discuss what the final code should do and how. 
- 8. - [ ] Determine which lines of code are not needed in final model and remove them. 
- 9. - [ ] Watch tutorials on how to use Pandas in Python. 
-10. - [ ] Discuss what functions can be added to the existing code. 
-11. - [ ] Run the final code in Visual Studio Code to ensure its error free. 
-12. - [ ] Create video and presentation of final code. 
+ 6. - [X] Create Database
+ 7. - [X] Create table stuctures in Database
+ 8. - [X] Create code for keyword searching Google and parse results
+ 9. - [ ] Read Database table to put in keyword results
+ 10. - [X] Create code to store results in table
+ 11. - [ ] Change Webpage "homepage" to look like a results pages
+ 12. - [ ] Create keyword input page/ add note about needing to wait
+ 13. - [ ] Connect results page to database tables
+ 14. - [ ] Connect keyword page to database tables
+ 15. - [ ] Identify bugs causing the code to crash and resolve them. 
+ 16. - [ ] Discuss what the final code should do and how. 
+ 17. - [ ] Determine which lines of code are not needed in final model and remove them.  
+18. - [ ] Discuss what functions can be added to the existing code. 
+19. - [ ] Run the final code in Visual Studio Code to ensure its error free. 
+20. - [ ] Create video and presentation of final code. 
