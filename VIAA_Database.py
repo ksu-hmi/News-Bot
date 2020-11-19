@@ -29,7 +29,7 @@ def create_table(conn, create_table_sql):
         print(e)
 
 def main():
-    database = r"db\VIAA..db"
+    database = r"dbVIAA.db"
 
     sql_create_url_table = """ CREATE TABLE IF NOT EXISTS url (
                                         id integer PRIMARY KEY,
