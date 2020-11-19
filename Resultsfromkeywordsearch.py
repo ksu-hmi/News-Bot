@@ -65,11 +65,42 @@ def googleScholarSearch(query):
         print(str(ex))
     finally:
         return g_clean
-#just for testing
-query = "Puppies"
-G_url_results = googleSearch(query)
-GS_url_results1 = googleScholarSearch(query)
 
+
+def jamiaSearch(query):
+    g_clean = [] #this is the list we store the search results
+    url = 'https://jamianetwork.com/searchresults?q={}&allSites=1&SearchSourceType=1&exPrm_qqq=%7b!payloadDisMaxQParser+pf%3dTags+qf%3dTags%5e0.0000001+payloadFields%3dTags+bf%3d%7d%22{}%22&exPrm_hl.q={}&sort=Newest' #this is the actual query we are going to scrape    
+    try:
+        html = requests.get(url)
+        if html.status_code==200:
+            soup = BeautifulSoup(html.text, 'lxml')
+            a = soup.find_all('a') # a is a list
+        for i in a:
+            k = i.get('href')
+            try:
+                m = re.search("(?P<url>https?://[^\s]+)", k)
+                n = m.group(0)
+                rul = n.split('&')[0]
+                domain = urlparse(rul)
+                if(re.search('jamanetwork.com', domain.netloc)):
+                    continue
+                else:
+                    g_clean.append(rul)
+                        
+            except:
+                continue
+    #prints the errors            
+    except Exception as ex:
+        print(str(ex))
+    finally:
+        return g_clean
+
+
+#just for testing
+keyword = "Puppies"
+G_url_results = googleSearch(keyword)
+GS_url_results = googleScholarSearch(keyword)
+J_url_results = JamiaSearch(keyword)
 database = r"dbVIAA.db"
 conn = create_connection(database)
 
@@ -94,6 +125,11 @@ for url in G_url_results:
     create_url(conn, info.domain, url, keyword)    
 
 for url in GS_url_results:
+    #Get Domian name
+    info = get_tld(url, as_object=True)
+    create_url(conn, info.domain, url, keyword)  
+
+for url in J_url_results:
     #Get Domian name
     info = get_tld(url, as_object=True)
     create_url(conn, info.domain, url, keyword)  
