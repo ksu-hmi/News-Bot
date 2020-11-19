@@ -67,32 +67,33 @@ def googleScholarSearch(query):
         return g_clean
 #just for testing
 query = "Puppies"
-url_results = googleSearch(query)"
-url_results1 = googleScholarSearch(query)
-database = r"db\VIAA..db"
+G_url_results = googleSearch(query)
+GS_url_results1 = googleScholarSearch(query)
+
+database = r"dbVIAA.db"
 conn = create_connection(database)
 
 #Insert into table
-def create_url(conn, website_name, url):
+def create_url(conn, website_name, url,keyword):
     """
     Create a new url into the url table
     :param conn:
     :param url:
     :return: url id
     """
-    sql = ''' INSERT INTO url(website_name,url)
+    sql = ''' INSERT INTO url(website_name,url,keyword)
               VALUES(?,?) '''
     cur = conn.cursor()
-    cur.execute(sql, (website_name, url))
+    cur.execute(sql, (website_name, url, keyword))
     conn.commit()
     return cur.lastrowid
 
-for url in url_results:
+for url in G_url_results:
     #Get Domian name
     info = get_tld(url, as_object=True)
-    create_url(conn, info.domain, url)    
+    create_url(conn, info.domain, url, keyword)    
 
-for url in url_results1:
+for url in GS_url_results:
     #Get Domian name
     info = get_tld(url, as_object=True)
-    create_url(conn, info.domain, url)  
+    create_url(conn, info.domain, url, keyword)  
