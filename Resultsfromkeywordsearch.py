@@ -11,7 +11,7 @@ from sqlite3 import Error
  
 def googleSearch(query):
     g_clean = [] #this is the list we store the search results
-    url = 'https://www.google.com/search?client=ubuntu&channel=fs&q={}&ie=utf-8&oe=utf-8'.format(query) #this is the actual query we are going to scrape    
+    url = 'https://www.google.com/search?client=ubuntu&channel=fs&q={}&ie=utf-8&oe=utf-8&as_qdr=w'.format(query) #this is the actual query we are going to scrape    
     try:
         html = requests.get(url)
         if html.status_code==200:
@@ -37,10 +37,38 @@ def googleSearch(query):
     finally:
         return g_clean
 
+
+def googleScholarSearch(query):
+    g_clean = [] #this is the list we store the search results
+    url = 'https://www.scholar.google.com/search?client=ubuntu&channel=fs&q={}&ie=utf-8&oe=utf-8&as_qdr=w'.format(query) #this is the actual query we are going to scrape    
+    try:
+        html = requests.get(url)
+        if html.status_code==200:
+            soup = BeautifulSoup(html.text, 'lxml')
+            a = soup.find_all('a') # a is a list
+        for i in a:
+            k = i.get('href')
+            try:
+                m = re.search("(?P<url>https?://[^\s]+)", k)
+                n = m.group(0)
+                rul = n.split('&')[0]
+                domain = urlparse(rul)
+                if(re.search('scholar.google.com', domain.netloc)):
+                    continue
+                else:
+                    g_clean.append(rul)
+                        
+            except:
+                continue
+    #prints the errors            
+    except Exception as ex:
+        print(str(ex))
+    finally:
+        return g_clean
 #just for testing
 query = "Puppies"
-url_results = googleSearch(query)
-
+url_results = googleSearch(query)"
+url_results1 = googleScholarSearch(query)
 database = r"db\VIAA..db"
 conn = create_connection(database)
 
@@ -63,3 +91,8 @@ for url in url_results:
     #Get Domian name
     info = get_tld(url, as_object=True)
     create_url(conn, info.domain, url)    
+
+for url in url_results1:
+    #Get Domian name
+    info = get_tld(url, as_object=True)
+    create_url(conn, info.domain, url)  
