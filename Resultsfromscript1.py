@@ -25,9 +25,9 @@ def home():
 def about():
     return render_template("about.html")
 
-@app.route('/tasha/')
-def tasha():
-    return render_template("tasha.html")
+@app.route('/homepage/')
+def homepage():
+    return render_template("homepage.html")
 
 if __name__=="__main__":
     app.run(debug=True)
