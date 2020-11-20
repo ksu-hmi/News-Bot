@@ -21,9 +21,9 @@ def home():
     
     return render_template("home.html",myName="")
 
-@app.route('/Keyword Search/')
-def keywordsearch():
-    return render_template("keywordsearch.html")
+@app.route('/about/')
+def about():
+    return render_template("about.html")
 
 @app.route('/homepage/')
 def homepage():

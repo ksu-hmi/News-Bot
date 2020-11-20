@@ -2,7 +2,7 @@
 <html>
   <head>
       <title>Python Flask Demo</title>
-      <link rel="stylesheet" href="{{url_for('static',filename='css/main.css')}}">
+      <link rel="stylesheet" href="{{url_for('static',filename='css/main1.css')}}">
   </head>
   <body>
     <header>
@@ -11,7 +11,7 @@
         <strong><nav>
           <ul class="menu">
             <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('about') }}">About</a></li>
+            <li><a href="{{ url_for('about') }}">Search</a></li>
           </ul>
         </nav></strong>
       </div>
@@ -47,27 +47,5 @@ th, td {
     }
     </style>
     </head>
-    <body>
-    
-    <h1>VIAA Table</h1>
-    <p>We can write whatever we want in here</p>
-    <table style="width:75%", class="center" >  
-      <tr>
-        <th>Column1</th>
-        <th>Column2</th>
-        <th>Column3</th>
-      </tr>
-      <tr>
-        <td>Field1</td>
-        <td>Field2</td>
-        <td>Field3</td>
-        </td>
-      </tr>
-      <tr>
-        <td>Field4</td>
-        <td>Field5</td>
-        <td>Field6</td>
-      </tr>
-    </table>
   </body>
 </html>

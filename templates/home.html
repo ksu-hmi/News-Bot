@@ -2,9 +2,8 @@
 {% block content %}
 <div class="home">
     <h1>Key Word Search</h1>
-    <p>This is a test website. {{myName}}</p>
     <p><form action="{{ url_for('greet') }}" method='post'>
-        Please type your name: <input type='text' name='myName'><br>
+        Please enter your keyword: <input type='text' name='myName'>
         <input type='submit' value='Submit'>
         </form></p>
 </div>
