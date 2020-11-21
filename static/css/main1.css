@@ -2,7 +2,7 @@ body {
     margin: 0;
     padding: 0;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    color: rgb(57, 106, 235);
+    color: rgb(57, 105, 235);
   }
   
   /*
@@ -20,13 +20,13 @@ body {
   header h1.logo {
     margin: 0;
     font-size: 1.7em;
-    color: #f5394b;
+    color: #f539dc;
     text-transform: uppercase;
     float: left;
   }
   
   header h1.logo:hover {
-    color: rgb(246,177,14);
+    color: rgb(231, 246, 14);
     text-decoration: none;
   }
   
@@ -41,7 +41,7 @@ body {
   
   div.home {
     padding: 10px 0 30px 0;
-    background-color: rgb(253, 239, 11);
+    background-color: rgb(11, 176, 253);
     -webkit-border-radius: 6px;
        -moz-border-radius: 6px;
             border-radius: 6px;
@@ -49,7 +49,7 @@ body {
   
   div.about {
     padding: 10px 0 30px 0;
-    background-color: rgb(246,177,14);
+    background-color: rgb(14, 246, 64);
     -webkit-border-radius: 6px;
        -moz-border-radius: 6px;
             border-radius: 6px;

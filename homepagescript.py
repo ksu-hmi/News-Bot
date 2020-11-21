@@ -10,7 +10,7 @@ def greet():
     inputName = request.form['myName']
     ip = request.remote_addr
     #write data to file or to DB
-    inputName = inputName.upper()+" hi!  Visiting from " + str(ip)
+    inputName = inputName.upper()+ "Here are your keyword search results! " + str(ip)
     return render_template("home.html",myName=inputName)
 @app.route('/')
 #In home(), Python callsFlask’s render_template function, which looks in the “templates” folder for the file mentioned

@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="home">
+    <h1>VIAA Homepage</h1>
+    <p>This is a test homepage for our VIAA project. {{myName}}</p>
+    <p><form action="{{ url_for('greet') }}" method='post'>
+        Please type your name: <input type='text' name='myName'><br>
+        <input type='submit' value='Submit'>
+        </form></p>
+</div>
+</style>
+</head>
+<body>
+
+<h1>VIAA Table</h1>
+<p>We can write whatever we want in here</p>
+<table style="width:75%", class="center" >  
+  <tr>
+    <th>Column1</th>
+    <th>Column2</th>
+    <th>Column3</th>
+  </tr>
+  <tr>
+    <td>Field1</td>
+    <td>Field2</td>
+    <td>Field3</td>
+    </td>
+  </tr>
+  <tr>
+    <td>Field4</td>
+    <td>Field5</td>
+    <td>Field6</td>
+  </tr>
+</table>
+</body>
+</html>
+{% endblock %}
