@@ -21,13 +21,14 @@ def home():
     
     return render_template("home.html",myName="")
 
-@app.route('/about/')
+@app.route('/keyword/')
 def about():
-    return render_template("about.html")
+    return render_template("keyword.html")
 
-@app.route('/homepage/')
-def homepage():
-    return render_template("homepage.html")
 
 if __name__=="__main__":
     app.run(debug=True)
+
+# Button to select url to send
+# Button sends to twitter
+    

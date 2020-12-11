@@ -33,8 +33,10 @@ def main():
 
     sql_create_url_table = """ CREATE TABLE IF NOT EXISTS url (
                                         id integer PRIMARY KEY,
+                                        title text NOT NULL,
+                                        url text NOT NULL,
                                         website_name text NOT NULL,
-                                        url text NOT NULL
+                                        keyword text NOT NULL
                                     ); """
 
     sql_create_keyword_table = """CREATE TABLE IF NOT EXISTS keyword (
