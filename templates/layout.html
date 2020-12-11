@@ -1,17 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-      <title>Python Flask Demo</title>
+      <title>VIAA</title>
       <link rel="stylesheet" href="{{url_for('static',filename='css/main1.css')}}">
   </head>
   <body>
     <header>
       <div class="container">
-        <h1 class="logo">VIAA News Bot Project</h1>
+        <h1 class="logo">VIAA News Bot</h1>
         <strong><nav>
           <ul class="menu">
             <li><a href="{{ url_for('home') }}">Home</a></li>
-            <li><a href="{{ url_for('about') }}">Search</a></li>
+            <li><a href="{{ url_for('keyword') }}">Keyword Search</a></li>
+               <li><a href="{{ url_for('results') }}">Search Results</a></li>
           </ul>
         </nav></strong>
       </div>

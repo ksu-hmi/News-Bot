@@ -1,22 +1,37 @@
-
-while True:
-    user_name = input("Enter your name: \n")
+# Import the class `Flask` from the `flask` module
+from flask import Flask, render_template, request
+from Resultsfromkeywordsearch import *
+# Instantiate a new web application called `app`, with `__name__` representing the current file
+app=Flask(__name__)
+#The@app.route commands define the URLs in the website. 
+#The specific functions directly after@app.route define what happens when those URLs are visited 
+@app.route('/greet', methods=['POST'])
+#The greet() function sets up the response for the submission form in home.html returning the response to home.htm
+def ask():
+    inputword = request.form['word']
+    ip = request.remote_addr
+    #write data to file or to DB
+    return render_template("home.html",keywords=keywords)
+@app.route('/')
+#In home(), Python callsFlask’s render_template function, which looks in the “templates” folder for the file mentioned
+#and passes the variable myName to the template as blank by default. The home.html file says
+#it extends layout.html. So, the render_template function goes to layout.html and assembles
+#the html response, inserting home.html as a block named “content” where indicated
+def home():
     
-    if username.isalpha() == True:
-        print("Hi", user_name, ", I'm VIAA. \n It's a pleasure to search for you!")
-    
-        
-    else:
-        print("Please only use letters.\n")
+    return render_template("home.html",myName="")
 
-    user_id = input("Please enter an id number to use when searching: ")
-        if user_id.isalnum() == True:
-            print("Your user is is", user_id)
-     else:
-        print("Please enter a number\n")      
+@app.route('/keyword/')
+def about():
+    return render_template("keyword.html")
+
+
+if __name__=="__main__":
+    app.run(debug=True)
+
+ 
 
 # [ ] create keyword()
-
 def keywords(word):
     keyword = []
     if word.isalpha(): 
@@ -37,8 +52,17 @@ def create_keyword(conn,user_id,keyword):
     
     sql =  '''#INSERT INTO keyword(user_id ,keyword)
               #VALUES(?,?,?,?) '''
-'''          
+          
     cur = conn.cursor()
     cur.execute(sql, (user_id, keyword))
     conn.commit()
     return cur.lastrowid
+
+    def keyword_table(userID): 
+    conn = create_connection(r"dbVIAA.db")
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM keyword)
+
+    results = cur.fetchall()
+    
+    return keywords

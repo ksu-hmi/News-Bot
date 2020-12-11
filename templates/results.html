@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="home">
+    <h1>VIAA Homepage</h1>
+    <h2>Welcome to your Virtual Information Administration Assistant.</h2>
+    
+    
+        <!DOCTYPE html>
+        <html>
+        <body>
+        
+<h1>{{myName}}'s Keyword Search Results</h1>
+
+<table style="width:75%", class="center" >  
+  <thead>
+  <tr>
+    <th>Article Title</th>
+    <th>Website Name</th>
+    <th>URL</th>
+    <th>Keyword Search</th>
+  </tr>
+</thead>
+</tbody>
+     {% for result in results %}
+        <tr>
+            <td>{{result[0]}}</td>
+            <td>{{result[1]}}</td>
+            <td>{{result[2]}}</td>
+            <td>{{result[3]}}</td>
+        </tr>    
+     {% endfor %}
+</tbody>    
+</table>
+     
+  
+</div>
+</style>
+</body>
+</html>
+{% endblock %}
+

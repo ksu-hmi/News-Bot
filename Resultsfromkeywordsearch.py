@@ -105,14 +105,19 @@ print(gs_results)
 print(hs_results)
 googleScholarSearch('puppies')
 '''
+
 def JamiaSearch(query):
     g_clean = [] #this is the list we store the search results
     header_clean = []
-    url = 'https://academic.oup.com/jamia/search-results?q={}&sort=Date+%e2%80%93+Newest+First&fl_SiteID=5396&page=1&qb={%22q%22:%22{}%22}' #this is the actual query we are going to scrape 
-   https://academic.oup.com/jamia/search-results?q=puppies&sort=Date+%e2%80%93+Newest+First&fl_SiteID=5396&page=1&qb={%22q%22:%22puppies%22}
+    url = 'https://academic.oup.com/jamia/search-results?q={}&sort=Date+%e2%80%93+Newest+First&fl_SiteID=5396&page=1&qb={{%22q%22:%22{}%22}}'.format(query, query) #this is the actual query we are going to scrape 
+   #https://academic.oup.com/jamia/search-results?q=puppies&sort=Date+%e2%80%93+Newest+First&fl_SiteID=5396&page=1&qb={%22q%22:%22puppies%22}
    
+    print(url)
+
     try:
-        html = requests.get(url)
+        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'}
+
+        html = requests.get(url, headers)
         if html.status_code==200:
             soup = BeautifulSoup(html.text, 'lxml')
             a = soup.find_all('a') # a is a list
@@ -158,7 +163,7 @@ query = 'puppies'
 j_results, jh_results = JamiaSearch(query)
 print(j_results)
 print(jh_results)
-JamiaSearch('puppies')
+#JamiaSearch('puppies')
 '''
 #just for testing
 keyword = "Puppies"
@@ -180,9 +185,9 @@ def create_url(conn,title,website_name,url,keyword):
     
     sql =  '''#INSERT INTO url(title,website_name,url,keyword)
               #VALUES(?,?,?,?) '''
-'''          
+'''
     cur = conn.cursor()
-    cur.execute(sql, (title,website_name,url, keyword))
+    cur.execute(sql, (title,website_name.title(),url, keyword))
     conn.commit()
     return cur.lastrowid
 
@@ -199,4 +204,21 @@ for result in range(len(gs_results)):
     #Get Domain name
     info = get_tld(url, as_object=True)
     create_url(conn, title, info.domain, url, keyword)
-    '''
+
+for result in range(len(j_results)):
+    url = j_results[result]
+    title = jh_results[result]
+    #Get Domain name
+    info = get_tld(url, as_object=True)
+    create_url(conn, title, info.domain, url, keyword)    
+    
+# Getting urls from database table 
+def url_table(userID): 
+    conn = create_connection(r"dbVIAA.db")
+    cur = conn.cursor()
+    cur.execute("SELECT url.title,website_name,url,url.keyword FROM url INNER JOIN keyword ON url.keyword = keyword.keyword where user_id = '" + userID + "';")
+
+    results = cur.fetchall()
+    
+    return results
+ '''   
