@@ -14,20 +14,25 @@
      
 <h1>{{myName}}'s Keywords</h1>
 
-<table style="width:75%", class="center" >  
+<form action="{{ url_for('deletekey') }}" method='post'>
+
+<table style="width:75%", class="center" border="0">  
   <thead>
   <tr>
     <th>Keywords</th>
+
   </tr>
 </thead>
-</tbody>
-     {% for word in keywords %}
+<tbody>
+    {% for word in keywords %}
         <tr>
             <td>{{word[0]}}</td>
+            <td><button name="DeleteWord" value="{{word[0]}}" type="submit">Delete</button></td>
+        
         </tr>    
-     {% endfor %}
+    {% endfor %}
 </tbody>    
-</table>
-     
+</table>  
+</form>     
 
 {% endblock %}

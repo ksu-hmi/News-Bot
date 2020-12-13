@@ -8,12 +8,18 @@ from twitter import *
 app=Flask(__name__)
 #The@app.route commands define the URLs in the website. 
 #The specific functions directly after@app.route define what happens when those URLs are visited 
-@app.route('/results', methods=['POST'])
+@app.route('/results', methods=['POST','GET'])
 #The greet() function sets up the response for the submission form in home.html returning the response to home.htm
 
+#Show search results
 def results():
-    inputName = request.form['myName']
-    inputUserId = request.form['userID']
+    if request.method == 'POST':
+        inputName = request.form['myName']
+        inputUserId = request.form['userID']
+    else:
+        inputUserId = request.cookies.get('userID')
+        inputName = request.cookies.get('myName')    
+        
     results = url_table(inputUserId)
     ip = request.remote_addr
     #write data to file or to DB
@@ -36,7 +42,9 @@ def keyword():
     if request.method == 'POST':
          inputnew_word = request.form['new_keywords']
          create_keyword(inputUserId,inputnew_word)
-
+         do_searches(inputnew_word)
+         
+         
     keywords = keyword_table(inputUserId)
 
     #inputword = request.form['word']
@@ -44,6 +52,7 @@ def keyword():
     #write data to file or to DB
     return render_template("keyword.html",keywords=keywords, myName=inputName)
 
+#Tweet the url
 @app.route('/tweet', methods=['POST'])
 def tweet():
     post=request.form['Tweet']
@@ -54,21 +63,21 @@ def tweet():
 
     return render_template("twitter.html",myName=inputName)
   
-
-@app.route('/delete', methods=['POST'])
-def dellink():
+#Delete url record
+@app.route('/deleterecord', methods=['POST'])
+def deleterecord():
     delurl = request.form['Delete']
     inputUserId = request.cookies.get('userID')
     inputName = request.cookies.get('myName')
     
-    query = "DELETE FROM url WHERE  url = '" + delurl + "';"
+    query = "DELETE FROM url WHERE  url = ?;"
 
     try:
         
         # execute the query
         conn = create_connection(r"dbVIAA.db")
         cur = conn.cursor()
-        cursor.execute(query, (delurl))
+        cur.execute(query, (delurl,))
 
         # accept the change
         conn.commit()
@@ -77,19 +86,43 @@ def dellink():
         print(error, ": Failed to delete record")
 
     finally:
-        cursor.close()
+        cur.close()
         conn.close()
-    return render_template("deletedkeyword.html",myName=inputName)
-
-results = cur.fetchall()
+    return render_template("deletedrecord.html",myName=inputName)
     
-    return results
+    
 
-delurl = request.form['Delete']
-if __name__ == '__main__':
-    dellink(delurl)
+#Delete keyword 
+@app.route('/deletekey', methods=['POST'])
+def deletekey():
+    delkey = request.form['DeleteWord']
+    inputUserId = request.cookies.get('userID')
+    inputName = request.cookies.get('myName')
+    
+    print(delkey)
+
+    query = "DELETE FROM keyword WHERE  keyword = ?;"
+
+    try:
+        
+        # execute the query
+        conn = create_connection(r"dbVIAA.db")
+        cur = conn.cursor()
+        cur.execute(query, (delkey,))
+
+        # accept the change
+        conn.commit()
+
+    except Error as error:
+        print(error, ": Failed to delete keyword")
+
+    finally:
+        cur.close()
+        conn.close()
+    return render_template("deletekeyword.html",myName=inputName)
 
 
+# Homepage
 @app.route('/')
 #In home(), Python callsFlask’s render_template function, which looks in the “templates” folder for the file mentioned
 #and passes the variable myName to the template as blank by default. The home.html file says

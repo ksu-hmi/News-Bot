@@ -1,6 +1,6 @@
 from VIAA_Database import *
 
-#Insert into table
+#Insert into database
 def create_keyword(user_id,new_keywords):
     
     #Create a new url into the url table
@@ -17,6 +17,7 @@ def create_keyword(user_id,new_keywords):
     conn.commit()
     return cur.lastrowid
 
+#Get keywords per userID to populate table 
 def keyword_table(userID): 
     conn = create_connection(r"dbVIAA.db")
     cur = conn.cursor()

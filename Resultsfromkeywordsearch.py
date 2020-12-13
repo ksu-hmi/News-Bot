@@ -11,7 +11,7 @@ from tld import get_tld
 import sqlite3
 from sqlite3 import Error
 
-
+#Search keywords
 def googleSearch(query):
     g_clean = [] #this is the list we store the search results
     header_clean = []
@@ -163,15 +163,33 @@ print(jh_results)
 #JamiaSearch('puppies')
 '''
 
-keyword(inputnew_word)
-#Get website name 
-g_results, h_results = googleSearch(inputnew_word)
-gs_results, hs_results = googleScholarSearch(inputnew_word)
-#j_results, js_results = JamiaSearch(inputnew_word)
+def do_searches(inputnew_word):
+    g_results, h_results = googleSearch(inputnew_word)
+    gs_results, hs_results = googleScholarSearch(inputnew_word)
+    #j_results, js_results = JamiaSearch(inputnew_word)
+    
+    database = r"dbVIAA.db"
+    conn = create_connection(database)
+
+    for result in range(len(g_results)):
+        url = g_results[result]
+        title = h_results[result]
+        #Get Domain name
+        info = get_tld(url, as_object=True)
+        create_url(conn, title, info.domain, url, inputnew_word )
+
+    for result in range(len(gs_results)):
+        url = gs_results[result]
+        title = hs_results[result]
+        #Get Domain name
+        info = get_tld(url, as_object=True)
+        create_url(conn, title, info.domain, url, inputnew_word )
+
 database = r"dbVIAA.db"
 conn = create_connection(database)
 
-#Insert into table
+
+#Insert into database
 def create_url(conn,title,website_name,url,inputnew_word):
     
     #Create a new url into the url table
@@ -179,14 +197,14 @@ def create_url(conn,title,website_name,url,inputnew_word):
     #:param url:
     #:return: url id
     
-    sql =  '''#INSERT INTO url(title,website_name,url,keyword)
-              #VALUES(?,?,?,?) '''
+    sql =  '''INSERT INTO url(title,website_name,url,keyword)
+              VALUES(?,?,?,?) '''
 
     cur = conn.cursor()
     cur.execute(sql, (title,website_name.title(),url,inputnew_word ))
     conn.commit()
     return cur.lastrowid
-
+'''
 for result in range(len(g_results)):
     url = g_results[result]
     title = h_results[result]
@@ -207,8 +225,8 @@ for result in range(len(j_results)):
     #Get Domain name
     info = get_tld(url, as_object=True)
     create_url(conn, title, info.domain, url,inputnew_word )    
-  
-# Getting urls from database table 
+''' 
+# Getting urls per userid to populate table
 def url_table(userID): 
     conn = create_connection(r"dbVIAA.db")
     cur = conn.cursor()

@@ -9,7 +9,7 @@
         <html>
         <body>
 
-<p><form action="{{ url_for('tweet') }}" method='post'>       
+<p>       
 <h1>{{myName}}'s Keyword Search Results</h1>
 
 <table style="width:75%", class="center" >  
@@ -19,7 +19,7 @@
     <th>Website Name</th>
     <th>URL</th>
     <th>Keyword Search</th>
-    <th></th>
+
   </tr>
 </thead>
 </tbody>
@@ -29,15 +29,14 @@
             <td>{{result[1]}}</td>
             <td>{{result[2]}}</td>
             <td>{{result[3]}}</td>
-            <td><button name="Tweet" value="{{result[2]}}" type="submit">Tweet</button></td>
-            <td><button name="Delete" value="{{result[2]}}" type="submit">Delete</button></td>
+            <td><form action="{{ url_for('tweet') }}" method='post'><button name="Tweet" value="{{result[2]}}" type="submit">Tweet</button></form></td>
+            <td><form action="{{ url_for('deleterecord') }}" method='post'><button name="Delete" value="{{result[2]}}" type="submit">Delete</button></form></td>
         
         </tr>    
      {% endfor %}
 </tbody>    
 </table>
      
-</form>  
 </p>  
   
 </div>
