@@ -10,13 +10,32 @@
         What would you like to search? : <input type='text' name='new_keywords'>
         <input type='submit' value='Submit'>
         </form></p>
-</div>
-     
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <style>
+        img {
+                border: 5px solid #555;
+              }
+        </style>
+        </head>
+        <body>
+        <img src="images/robot.png" alt="TTbots" width="250" height="250" class="center">
+        
+    </body>
+        </html>
+          
+
+</style>
+</head>
+</style>
+</head>
+<body>
 <h1>{{myName}}'s Keywords</h1>
 
 <form action="{{ url_for('deletekey') }}" method='post'>
 
-<table style="width:75%", class="center" border="0">  
+<table style="width:75%", class="center", border="2", background-color="white">  
   <thead>
   <tr>
     <th>Keywords</th>
