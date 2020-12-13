@@ -82,7 +82,7 @@ def dellink():
     return render_template("deletedkeyword.html",myName=inputName)
 
 results = cur.fetchall()
-    
+
     return results
 
 delurl = request.form['Delete']
